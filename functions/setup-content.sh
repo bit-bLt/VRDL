@@ -1,0 +1,53 @@
+setup_content() {
+	## Acquire Game Content
+
+	tempdir=temp
+	tempdir_x="$tempdir/extracted"
+	mkdir "$tempdir_x" -p
+
+	if [ "$VRDL_LATEST_CONTENT_ENABLE" -eq 1 ] && [ ! -z "$VRDL_LATEST_CONTENT_URI" ]; then
+		log 0 "Downloading latest Enhanced Version ..."
+	
+		content_uri=$(curl -s "$VRDL_LATEST_CONTENT_URI" \
+				| jq -r ".. | .browser_download_url? // empty" | grep -vi "extended")
+	
+		wget "$content_uri" -P "$tempdir"
+
+	elif [ ! -z $VRDL_STATIC_CONTENT_URI ]; then
+		log 0 "Downloading game package at: $VRDL_STATIC_CONTENT_URI ..."
+		wget "$VRDL_STATIC_CONTENT_URI" -P "$tempdir"
+	else
+		log 2 "VRDL_LATEST_CONTENT_URI or VRDL_STATIC_CONTENT_URI must be set in .env"
+		log 0 "Exiting ..."
+		exit 1
+
+	fi
+
+	# Extract
+
+	package_content="$(ls $tempdir | grep '.7z')"
+	7z x -o"$tempdir_x" "$tempdir/$package_content" 
+
+	dirs=$(find "$tempdir_x" -mindepth 1 -maxdepth 1 -type d | wc -l)
+	if [ "$dirs" -eq 1 ]; then
+		dir=$(find "$tempdir_x" -mindepth 1 -maxdepth 1 -type d)
+		cp "$dir"/* -r "$VRDL_GAME_DEFAULT_PATH"
+	else
+		cp "$tempdir_x"/* -r "$VRDL_GAME_DEFAULT_PATH"
+	fi
+
+	# Prepare for retrieving dedi support package
+	rm -r "$tempdir"/*
+
+	# If provided dedicated support URI, download and install it
+
+	if [ ! -z "$VRDL_SUPPORT_URI" ]; then
+	    wget -P "$tempdir" "$VRDL_SUPPORT_URI"
+		package_dedi="$(ls "$tempdir"/*.7z)"
+		7z x -o"$VRDL_GAME_DEFAULT_PATH/System" "$package_dedi" -y
+	fi
+
+	# Cleanup
+	
+	rm -r $tempdir
+}
