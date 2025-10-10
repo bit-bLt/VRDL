@@ -14,10 +14,10 @@ setup_service() {
 
 		[Service]
 		Type=simple
-		User="$VRDL_STANDARD_USER"
-		ExecStart="$vrdl_start_basename"
+		User=$VRDL_STANDARD_USER
+		ExecStart=$vrdl_start_basename
 		ExecStop=pkill sway
-		ExecStop=pkill "$vrdl_runner_basename"
+		ExecStop=pkill $vrdl_runner_basename
 		PAMName=Login
 		Restart=on-failure
 		RestartSec=1
