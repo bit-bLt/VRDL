@@ -13,10 +13,18 @@ as root:
 
 ```./vrdl-install```
 
+# Run
+
+A systemd service is created to handle starting and stopping the vrdl-runner script.
+
+The "vrdl-runner" script currently handled configuration and running of individual server instances.
+
+Edit the "servers" list in vrdl-runner to add or remove server instances that will be started by vrdl-runner.
+Each line should be a command as if handed to Windows CMD. Use existing entries to model additional entries.
 
 # What the script does
 
-TLDR; the dedicated server instance(s) runs underneath headless Sway and Xwayland.
+The dedicated server instance(s) runs underneath headless Sway and Xwayland.
 
 - Updates server
 - Creates standard user 
