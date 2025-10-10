@@ -13,4 +13,6 @@ setup_wine() {
 	    log 2 "Exiting ..."
     	return 1
 	fi
+
+	return 0
 }

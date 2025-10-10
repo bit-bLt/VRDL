@@ -1,4 +1,4 @@
-setup_systemd() {
+setup_service() {
 
 ## Systemd service creation
 
@@ -32,6 +32,10 @@ setup_systemd() {
 		systemctl stop "$VRDL_SERVICE_NAME"
 		systemctl disable "$VRDL_SERVICE_NAME"
 		rm "/etc/systemd/system/$VRDL_SERVICE_NAME.service"
+
+		if [ ! $? -eq 0 ]; then
+			log 2 "Failed to remove old systemd service"
+		fi
 	fi
 
 	log 0 "Creating Systemd service ..."
@@ -41,12 +45,22 @@ setup_systemd() {
 	log 0 "Reloading Systemd service daemon ..."
 	systemctl daemon-reload
 
+	if [ ! $? -eq 0 ]; then
+		log 2 "Failed to reload systemd daemon"
+	fi
+
 	# Enable systemd service
 
-	result=$(prompt "Enable systemd service (auto start on boot)? (y/n)")
+	response=$(prompt "Enable systemd service (auto start on boot)? (y/n)")
 
-	if [ $result = "y" ]; then
+	if [ $response = "y" ]; then
 		log 0 "Enabling Service ..."
 		systemctl enable "$VRDL_SERVICE_NAME"
+
+		if [ ! $? -eq 0 ]; then
+			log 2 "Failed to enable systemd service"
+		fi
 	fi
+
+	return 0	
 }

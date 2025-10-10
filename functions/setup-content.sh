@@ -18,9 +18,7 @@ setup_content() {
 		wget "$VRDL_STATIC_CONTENT_URI" -P "$tempdir"
 	else
 		log 2 "VRDL_LATEST_CONTENT_URI or VRDL_STATIC_CONTENT_URI must be set in .env"
-		log 0 "Exiting ..."
-		exit 1
-
+		return 0
 	fi
 
 	# Extract
@@ -50,4 +48,6 @@ setup_content() {
 	# Cleanup
 	
 	rm -r $tempdir
+
+	return 0
 }

@@ -32,5 +32,15 @@ setup_os_packages() {
 	else
 		log 2 "Deps installation failure"
 	fi
+
+	## Disable unattended upgrades
+
+	response=$(prompt "Remove apt unattended upgrades?")
+	if [ $response = "y" ]; then
+		log 0 "Removing unattended-upgrades ..."
+		apt remove unattended-upgrades -y
+	fi
+
+	return 0
 }
 

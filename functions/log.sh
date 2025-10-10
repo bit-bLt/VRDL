@@ -15,6 +15,4 @@ log() {
     if [ $VRDL_LOG_FILE_ENABLE -eq 1 ]; then
         echo "$tag $2" >> "$VRDL_LOG_FILE"
     fi
-
-    return 0
 }

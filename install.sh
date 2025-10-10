@@ -20,12 +20,54 @@ log 0 "Begin ..."
 
 printf "\n"
 
-setup_os_packages
-setup_users
-setup_fs
-setup_content
-setup_wine
-setup_service
+log 0 "Setting up OS Packages ..."
+
+if ! setup_os_packages; then
+	log 2 "Failed to setup os packages"
+else
+	log 0 "Package setup finished"
+fi
+
+log 0 "Setting up Users ..."
+
+if ! setup_users; then
+	log 2 "Failed to setup users"
+else
+	log 0 "User setup finished"
+fi
+
+log 0 "Setting up filesystem ..."
+
+if ! setup_fs; then
+	log 2 "Failed to setup file system"
+else
+	log 0 "Filesystem setup finished"
+fi
+
+response=$(prompt "Install Content?")
+if [ $response = 'y' ]; then	
+	log 0 "Setting up content ..."
+	
+	if ! setup_content; then
+		log 2 "Failed to setup content"
+	else
+		log 0 "Content setup finished"
+	fi
+else
+	log 1 "Content will not be installed"	
+fi	
+
+if ! setup_wine; then
+	log 2 "Failed to setup wine"
+else
+	log 0 "Wine setup finished"
+fi
+
+if ! setup_service; then
+	log 2 "Failed to setup systemd service"
+else
+	log 0 "Systemd service setup finished"
+fi
 
 ### Finalize
 
@@ -38,15 +80,6 @@ scctv_profile_dir="$VRDL_WINE_PREFIX_PATH/drive_c/ProgramData/Ubisoft/Tom Clancy
 su "$VRDL_STANDARD_USER" -c "mkdir -p \"$scctv_profile_dir\""
 su "$VRDL_STANDARD_USER" -c "touch \"$scctv_profile_dir\"/null_prf.ini"
 
-## Disable unattended upgrades
-
-result=$(prompt "Remove unattended upgrades (Ubuntu auto, background server updates)? (y/n)")
-
-if [ $result = "y" ]; then
-	log 0 "Removing unattended-upgrades ..."
-	apt remove unattended-upgrades -y
-fi
-
 ## Ensure dirs owned by standard user
 
 chown "$VRDL_STANDARD_USER":"$VRDL_STANDARD_USER" "$VRDL_BASE_PATH" -R
@@ -54,7 +87,7 @@ chown "$VRDL_STANDARD_USER":"$VRDL_STANDARD_USER" "$VRDL_BASE_PATH" -R
 ## Reboot
 
 echo "A reboot is recommended"
-result_rb=$(prompt "Reboot now? (y/n)")
+result_rb=$(prompt "Reboot now?")
 
 log 0 "Finished!"
 
