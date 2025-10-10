@@ -1,5 +1,5 @@
 #!/bin/python3
-# Modified script provided by noframelimit
+# Modified from script provided by noframelimit
 
 import subprocess
 import time
