@@ -15,8 +15,8 @@ as root:
 
 # Run
 
-Start:           systemctl start vrdl
-Stop:            systemctl stop vrdl
+Start: systemctl start vrdl
+Stop:  systemctl stop vrdl
 
 Enable Startup:  systemctl enable vrdl
 Disable Startup: systemctl disable vrdl
