@@ -11,7 +11,7 @@ Look to env vars in .env
 
 As root:
 
-```./vrdl-install```
+```./install.sh```
 
 # Run
 
@@ -44,6 +44,10 @@ The dedicated server instance(s) runs underneath headless Sway and Xwayland.
 - Configures 1x1 virtual display in Sway (this seems to work, and lowers memory footprint)
 - Provides status script to output the window title of the dedicated server cmd window (holds fps and player count stat)
 - Provides monitor script to "watch" the status script
+
+# Update
+
+To update the server and content, simply run install.sh again.
 
 # Support
 
