@@ -50,7 +50,7 @@ Each line should be a command as if handed to Windows CMD. Use existing entries 
 
 **Note:** You must ensure port numbers are not shared between server instances, otherwise they will not start properly.
 
-**vrdl-status** and **vrdl-monitor** can be ran fram anywhere.
+**vrdl-status** and **vrdl-monitor** can be ran by calling their name from any path.
 
 ## Update
 
