@@ -10,7 +10,7 @@ Look to env vars in .env
 VRDL_LATEST_CONTENT_ENABLE: Enables retrieval of latest Enhanced version via Github API
 VRDL_LATEST_CONTENT_URI: API endpoint location for retrieving latest content
 
-VRDL_STATIC_CONTENT_URI: Location of content package. Will be used if VRDL_LATEST_CONTENT_ENABLE=0
+VRDL_STATIC_CONTENT_URI: Location of content package. Used if latest content not enabled.
 
 # Install
 
