@@ -1,8 +1,22 @@
-# Purpose
+# VRDL - Versus Reloaded Dedicated Linux
 
 Sets up device to work as dedicated server for Splinter Cell Chaos Theory Versus.
 
-# Configuration
+The dedicated server instance(s) runs underneath headless Sway and Xwayland.
+
+- Updates server during install process
+- Offers to disable unattended updates from Apt
+- Creates standard user 
+- Installs required dependancies
+- Optionally downloads game content (must provide URI to content in .env)
+- Creates systemd services to start server instances on boot
+- Configures 1x1 virtual display in Sway (this seems to work, and lowers memory footprint)
+- Provides status script to output the window title of the dedicated server cmd window (holds fps and player count stat)
+- Provides monitor script to "watch" the status script
+
+**Note**: The automation currently relies on [SCCT:V Enhanced](https://github.com/Joshhhuaaa/EnhancedSCCTVersus) packages.
+
+## Configuration
 
 Look to env vars in .env
 
@@ -18,7 +32,7 @@ As root:
 
 ```./install.sh```
 
-# Run
+## Run
 
 A systemd service is created to handle starting and stopping server instances.  
 
@@ -36,25 +50,13 @@ Each line should be a command as if handed to Windows CMD. Use existing entries 
 
 **Note:** You must ensure port numbers are not shared between server instances, otherwise they will not start properly.
 
-# What the script does
 
-The dedicated server instance(s) runs underneath headless Sway and Xwayland.
 
-- Updates server during install process
-- Offers to disable unattended updates from Apt
-- Creates standard user 
-- Installs required dependancies
-- Optionally downloads game content (must provide URI to content in .env)
-- Creates systemd services to start server instances on boot
-- Configures 1x1 virtual display in Sway (this seems to work, and lowers memory footprint)
-- Provides status script to output the window title of the dedicated server cmd window (holds fps and player count stat)
-- Provides monitor script to "watch" the status script
-
-# Update
+## Update
 
 To update the server and content, simply run install.sh again.
 
-# Support
+## Support
 
 Currently only supports Ubuntu Server 24.04
 
