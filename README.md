@@ -1,4 +1,3 @@
-
 # Purpose
 
 Sets up device to work as dedicated server for Splinter Cell Chaos Theory Versus.
