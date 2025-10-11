@@ -14,7 +14,7 @@ The dedicated server instance(s) runs underneath headless Sway and Xwayland.
 - Provides status script to output the window title of the dedicated server cmd window (holds fps and player count stat)
 - Provides monitor script to "watch" the status script
 
-**Note**: The automation currently relies on [SCCT:V Enhanced](https://github.com/Joshhhuaaa/EnhancedSCCTVersus) packages.
+**Note**: The automation of content retrieval currently relies on [SCCT:V Enhanced](https://github.com/Joshhhuaaa/EnhancedSCCTVersus) packages.
 
 ## Configuration
 
