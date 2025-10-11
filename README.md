@@ -43,14 +43,14 @@ A systemd service is created to handle starting and stopping server instances.
 **Disable Startup**: systemctl disable vrdl  
 
 
-The "vrdl-runner" script currently handles configuration and running of individual server instances.
+The **vrdl-runner** script currently handles configuration and running of individual server instances.
 
-Edit the "servers" list in vrdl-runner to add or remove server instances that will be started.
+Edit the "servers" list in **vrdl-runner** to add or remove server instances that will be started.
 Each line should be a command as if handed to Windows CMD. Use existing entries to model additional entries.
 
 **Note:** You must ensure port numbers are not shared between server instances, otherwise they will not start properly.
 
-
+**vrdl-status** and **vrdl-monitor** can be ran fram anywhere.
 
 ## Update
 
