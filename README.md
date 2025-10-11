@@ -8,6 +8,7 @@ Sets up device to work as dedicated server for Splinter Cell Chaos Theory Versus
 Look to env vars in .env
 
 VRDL_LATEST_CONTENT_ENABLE: Enables retrieval of latest Enhanced version via Github API
+
 VRDL_LATEST_CONTENT_URI: API endpoint location for retrieving latest content
 
 VRDL_STATIC_CONTENT_URI: Location of content package. Used if latest content not enabled.
