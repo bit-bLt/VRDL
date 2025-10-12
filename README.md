@@ -26,7 +26,9 @@ VRDL_LATEST_CONTENT_ENABLE: Enables retrieval of latest Enhanced version via Git
 
 VRDL_LATEST_CONTENT_URI: API endpoint location for retrieving latest content
 
-VRDL_STATIC_CONTENT_URI: Location of content package. Used if latest content not enabled.
+VRDL_STATIC_CONTENT_URI: Location of content package. Used if latest content not enabled (expects .7z)
+
+VRDL_SUPPORT_URI: Location of dedicated server support package to install (expects .7z)
 
 # Install
 
