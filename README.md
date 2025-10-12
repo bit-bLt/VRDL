@@ -20,6 +20,8 @@ The dedicated server instance(s) runs underneath headless Sway and Xwayland.
 
 Look to env vars in .env
 
+VRDL_USER: Created if does not exist, service user, owner of all content at VRDL_BASE_PATH, some runtime scripts run as this user
+
 VRDL_LATEST_CONTENT_ENABLE: Enables retrieval of latest Enhanced version via Github API
 
 VRDL_LATEST_CONTENT_URI: API endpoint location for retrieving latest content
